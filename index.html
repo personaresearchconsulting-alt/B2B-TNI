@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -15,7 +16,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* CSS RESET & BASE */
 *{
 margin:0;
 padding:0;
@@ -24,7 +24,7 @@ font-family:'Poppins',sans-serif;
 }
 
 body{
-background:#fcfbf7; /* Soft Cream untuk Dashboard */
+background:#fcfbf7;
 min-height:100vh;
 overflow-x:hidden;
 color:#1a1a1a;
@@ -57,45 +57,44 @@ margin-bottom:18px;
 }
 
 @keyframes spin{
-100%{ transform:rotate(360deg); }
+100%{transform:rotate(360deg);}
 }
 
-/* LOGIN LAYOUT - GRADASI MIDNIGHT BLUE MEWAH */
+/* LOGIN */
 .center-page{
 min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 padding:20px;
-background: linear-gradient(135deg, #0B0B26 0%, #131340 50%, #1C1C59 100%);
-position: relative;
+background:linear-gradient(135deg,#0B0B26 0%,#131340 50%,#1C1C59 100%);
+position:relative;
 }
 
-/* KARTU LOGIN PUTIH BERSIH KONTRAST */
 .login-card{
 width:100%;
 max-width:460px;
 padding:50px 40px;
 border-radius:32px;
 text-align:center;
-background: rgba(255, 255, 255, 0.98);
-border: 1px solid rgba(255, 255, 255, 0.2);
-box-shadow: 0 25px 60px -15px rgba(11, 11, 38, 0.6);
-animation:fadeUp .6s cubic-bezier(0.16, 1, 0.3, 1);
+background:rgba(255,255,255,.98);
+border:1px solid rgba(255,255,255,.2);
+box-shadow:0 25px 60px -15px rgba(11,11,38,.6);
+animation:fadeUp .6s cubic-bezier(.16,1,.3,1);
 }
 
 @keyframes fadeUp{
-from{ opacity:0; transform:translateY(40px); }
-to{ opacity:1; transform:translateY(0); }
+from{opacity:0;transform:translateY(40px);}
+to{opacity:1;transform:translateY(0);}
 }
 
 .login-card h1{
 font-size:24px;
 margin-bottom:8px;
-color:#0B0B26; /* Deep Midnight Blue */
+color:#0B0B26;
 font-weight:700;
 line-height:1.3;
-letter-spacing: -0.5px;
+letter-spacing:-.5px;
 }
 
 .subtitle{
@@ -107,7 +106,6 @@ font-weight:600;
 font-size:12px;
 }
 
-/* INPUT FORM */
 input{
 width:100%;
 padding:16px 20px;
@@ -119,17 +117,16 @@ font-size:15px;
 background:#f8fafc;
 color:#0B0B26;
 text-align:center;
-transition: all .3s ease;
-font-weight: 500;
+transition:all .3s ease;
+font-weight:500;
 }
 
 input:focus{
 border-color:#131340;
 background:#ffffff;
-box-shadow: 0 0 0 4px rgba(19, 19, 64, 0.15);
+box-shadow:0 0 0 4px rgba(19,19,64,.15);
 }
 
-/* TOMBOL LOGIN MIDNIGHT BLUE ELEGAN */
 .login-btn{
 width:100%;
 padding:16px;
@@ -140,31 +137,31 @@ font-size:16px;
 font-weight:600;
 border:none;
 cursor:pointer;
-transition: all .3s ease;
-letter-spacing:0.5px;
-box-shadow: 0 4px 12px rgba(19, 19, 64, 0.2);
+transition:all .3s ease;
+letter-spacing:.5px;
+box-shadow:0 4px 12px rgba(19,19,64,.2);
 }
 
 .login-btn:hover{
 transform:translateY(-2px);
 background:#0B0B26;
-box-shadow:0 8px 20px rgba(11, 11, 38, 0.4);
+box-shadow:0 8px 20px rgba(11,11,38,.4);
 }
 
-/* PREMIUM DASHBOARD LAYOUT */
+/* DASHBOARD */
 #dashboard{
-max-width: 1200px;
-margin: 0 auto;
-padding: 40px 24px;
+max-width:1200px;
+margin:0 auto;
+padding:40px 24px;
 }
 
 .main-header{
-background: #ffffff;
-padding: 30px;
-border-radius: 24px;
-border: 1px solid #e5e5e0;
-box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-margin-bottom: 30px;
+background:#ffffff;
+padding:30px;
+border-radius:24px;
+border:1px solid #e5e5e0;
+box-shadow:0 4px 20px rgba(0,0,0,.02);
+margin-bottom:30px;
 }
 
 .header-top{
@@ -175,10 +172,10 @@ gap:20px;
 flex-wrap:wrap;
 }
 
-.header-top h2 {
-font-size: 24px;
-font-weight: 700;
-color: #1a1a1a;
+.header-top h2{
+font-size:24px;
+font-weight:700;
+color:#1a1a1a;
 }
 
 .header-right{
@@ -194,7 +191,7 @@ background:#1a1a1a;
 color:white;
 border-radius:14px;
 font-weight:500;
-font-size: 14px;
+font-size:14px;
 border:none;
 cursor:pointer;
 transition:.3s;
@@ -202,97 +199,96 @@ transition:.3s;
 
 .logout-btn:hover{
 background:#f44336;
-box-shadow: 0 4px 12px rgba(244,67,54,0.2);
+box-shadow:0 4px 12px rgba(244,67,54,.2);
 }
 
-/* RUNNING TEXT NOTICE BAR */
-.notice-bar {
-background: #131340; /* Midnight Blue Elegan */
-color: #ffffff;
-padding: 8px 20px;
-border-radius: 12px;
-margin-top: 20px;
-font-size: 12px;
-font-weight: 500;
-overflow: hidden;
-white-space: nowrap;
-border: 1px solid #0B0B26;
+/* NOTICE */
+.notice-bar{
+background:#131340;
+color:#ffffff;
+padding:8px 20px;
+border-radius:12px;
+margin-top:20px;
+font-size:12px;
+font-weight:500;
+overflow:hidden;
+white-space:nowrap;
+border:1px solid #0B0B26;
 }
 
-.notice-bar marquee {
-vertical-align: middle;
+.notice-bar marquee{
+vertical-align:middle;
 }
 
-/* CATEGORY SEPARATORS */
-.cat-wrapper {
-margin-bottom: 40px;
+/* CATEGORY */
+.cat-wrapper{
+margin-bottom:40px;
 }
 
-.cat-title {
-font-size: 14px;
-text-transform: uppercase;
-letter-spacing: 2px;
-color: #555555;
-font-weight: 700;
-margin-bottom: 20px;
-padding-left: 5px;
-display: flex;
-align-items: center;
-gap: 12px;
+.cat-title{
+font-size:14px;
+text-transform:uppercase;
+letter-spacing:2px;
+color:#555555;
+font-weight:700;
+margin-bottom:20px;
+padding-left:5px;
+display:flex;
+align-items:center;
+gap:12px;
 }
 
-.cat-title::after {
-content: '';
-flex: 1;
-height: 1px;
-background: #e5e5e0;
+.cat-title::after{
+content:'';
+flex:1;
+height:1px;
+background:#e5e5e0;
 }
 
-/* CARDS GRID SYSTEM */
+/* MENU */
 .menu-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:20px;
 }
 
-/* KOTAK MENU: MIDNIGHT BLUE PRESTIGE */
 .menu-card{
 padding:30px 24px;
 border-radius:22px;
 text-align:left;
 cursor:pointer;
-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-background: #131340; /* Midnight Blue */
-border: 1px solid #0B0B26;
+transition:all .3s cubic-bezier(.25,.8,.25,1);
+background:#131340;
+border:1px solid #0B0B26;
 color:#ffffff;
-box-shadow:0 4px 15px rgba(19,19,64,0.15);
+box-shadow:0 4px 15px rgba(19,19,64,.15);
 display:flex;
 flex-direction:column;
 justify-content:center;
-position: relative;
-overflow: hidden;
+position:relative;
+overflow:hidden;
 }
 
-.menu-card::after {
-content: '➔';
-position: absolute;
-right: 25px;
-bottom: 25px;
-font-size: 18px;
-color: rgba(255, 255, 255, 0.25);
-transition: 0.3s;
+.menu-card::after{
+content:'➔';
+position:absolute;
+right:25px;
+bottom:25px;
+font-size:18px;
+color:rgba(255,255,255,.25);
+transition:.3s;
 }
 
-.menu-card:hover::after {
-color: #ffffff;
-transform: translateX(5px);
+.menu-card:hover::after{
+color:#ffffff;
+transform:translateX(5px);
 }
 
-.menu-card span {
-font-size: 16px;
-font-weight: 600;
-line-height: 1.4;
-padding-right: 20px;
+.menu-card span{
+font-size:16px;
+font-weight:600;
+line-height:1.4;
+padding-right:20px;
 }
 
 .menu-card small{
@@ -301,19 +297,18 @@ color:#cbd5e1;
 letter-spacing:.2px;
 font-weight:400;
 margin-top:10px;
-line-height: 1.5;
-display: block;
+line-height:1.5;
+display:block;
 }
 
-/* HOVER EFFECT (Midnight Blue Lebih Gelap) */
 .menu-card:hover{
 transform:translateY(-5px);
-background: #0B0B26 !important; 
-box-shadow: 0 12px 28px rgba(11,11,38,0.35) !important;
-border-color: #050514;
+background:#0B0B26 !important;
+box-shadow:0 12px 28px rgba(11,11,38,.35) !important;
+border-color:#050514;
 }
 
-/* POPUP NOTIFICATION */
+/* POPUP */
 .popup{
 position:fixed;
 top:30px;
@@ -331,110 +326,180 @@ text-align:center;
 padding:60px 30px 30px 30px;
 color:#888888;
 font-size:13px;
-letter-spacing: 1px;
-font-weight: 500;
-border-top: 1px solid #e5e5e0;
-margin-top: 40px;
+letter-spacing:1px;
+font-weight:500;
+border-top:1px solid #e5e5e0;
+margin-top:40px;
 }
 
-/* RESPONSIVE BREAKPOINTS */
+/* RESPONSIVE */
 @media(max-width:768px){
-.login-card{ padding:40px 24px; border-radius: 26px; }
-.login-card h1{ font-size:22px; }
-#dashboard{ padding:20px 16px; }
-.main-header { padding: 20px; border-radius: 18px; }
-.menu-grid { grid-template-columns: 1fr; }
+.login-card{
+padding:40px 24px;
+border-radius:26px;
+}
+
+.login-card h1{
+font-size:22px;
+}
+
+#dashboard{
+padding:20px 16px;
+}
+
+.main-header{
+padding:20px;
+border-radius:18px;
+}
+
+.menu-grid{
+grid-template-columns:1fr;
+}
 }
 </style>
 </head>
 
 <body>
 
-<div id="loadingScreen" style="display: none;">
+<div id="loadingScreen" style="display:none;">
 <div class="loader"></div>
-<h3 style="color:#1a1a1a;font-weight:600;">Menghubungkan ke Sistem...</h3>
+<h3 style="color:#1a1a1a;font-weight:600;">
+Menghubungkan ke Sistem...
+</h3>
 </div>
 
+<!-- LOGIN PAGE -->
 <section id="loginPage" class="center-page">
+
 <div class="login-card">
-<h1>PORTAL PORTAL UTAMA<br>SIMULASI ASESMEN</h1>
-<p class="subtitle">PERSONA RESEARCH & CONSULTING</p>
-<input type="password" id="passwordInput" placeholder="Masukkan Kata Sandi Akses Portal">
-<button class="login-btn" id="loginBtn">MASUK KE DASHBOARD</button>
+
+<h1>
+PORTAL UTAMA<br>
+SIMULASI ASESMEN
+</h1>
+
+<p class="subtitle">
+PERSONA RESEARCH & CONSULTING
+</p>
+
+<input
+type="password"
+id="passwordInput"
+placeholder="Masukkan Kata Sandi Akses Portal"
+autocomplete="off"
+>
+
+<button class="login-btn" id="loginBtn">
+MASUK KE DASHBOARD
+</button>
+
 </div>
 </section>
 
+<!-- DASHBOARD -->
 <section id="dashboard" class="hidden">
+
 <div class="main-header">
+
 <div class="header-top">
+
 <div>
 <h2>Persona Research & Consulting</h2>
-<p id="welcomeText" style="color:#666666; margin-top:4px; font-size: 14px;"></p>
+
+<p
+id="welcomeText"
+style="color:#666666;margin-top:4px;font-size:14px;"
+></p>
+
 </div>
+
 <div class="header-right">
-<button class="logout-btn" id="logoutBtn">Keluar</button>
+
+<button class="logout-btn" id="logoutBtn">
+Keluar
+</button>
+
 </div>
+
 </div>
+
 <div class="notice-bar">
-<marquee scrollamount="4">📢 PENGUMUMAN: Kerjakan simulasi latihan instrumen tes ini dengan fokus dan teliti demi hasil grafik analisis performa yang maksimal.</marquee>
+
+<marquee scrollamount="4">
+📢 PENGUMUMAN: Kerjakan simulasi latihan instrumen tes ini dengan fokus dan teliti demi hasil grafik analisis performa yang maksimal.
+</marquee>
+
 </div>
+
 </div>
 
 <div class="cat-wrapper">
-<div class="cat-title">Daftar Simulasi Latihan Instrumen</div>
+
+<div class="cat-title">
+Daftar Simulasi Latihan Instrumen
+</div>
+
 <div class="menu-grid">
-<!-- MENU MODUL -->
+
 <div class="menu-card" data-link="army_alpha_cat.html">
-<span>🧠 TES ARMY ALPHA CAT </span>
-<small>Untuk mengukur daya tangkap instruksi verbal, kecepatan pemrosesan informasi, ketelitian, serta konsentrasi kognitif secara langsung dan otomatis.</small>
+<span>🧠 TES ARMY ALPHA CAT</span>
+<small>
+Untuk mengukur daya tangkap instruksi verbal, kecepatan pemrosesan informasi, ketelitian, serta konsentrasi kognitif secara langsung dan otomatis.
+</small>
 </div>
 
-<!-- MENU MODUL 1 -->
 <div class="menu-card" data-link="kecerdasan_tni.html">
-<span>🧠 TES KECERDASAN TNI </span>
-<small>Mengukur kemampuan penalaran logis, analitis, serta pemecahan masalah kognitif terstruktur siswa di bawah batas waktu tertentu.</small>
+<span>🧠 TES KECERDASAN TNI</span>
+<small>
+Mengukur kemampuan penalaran logis, analitis, serta pemecahan masalah kognitif terstruktur siswa di bawah batas waktu tertentu.
+</small>
 </div>
 
-<!-- MENU MODUL 2 -->
 <div class="menu-card" data-link="kecedasan_dasar_1.html">
-<span>🧠 TES KECERDASAN </span>
-<small>Mengukur kemampuan penalaran logis, analitis, serta pemecahan masalah kognitif terstruktur siswa di bawah batas waktu tertentu.</small>
+<span>🧠 TES KECERDASAN</span>
+<small>
+Mengukur kemampuan penalaran logis, analitis, serta pemecahan masalah kognitif terstruktur siswa di bawah batas waktu tertentu.
+</small>
 </div>
 
-
-<!-- MENU MODUL 3 -->
 <div class="menu-card" data-link="kepribadian_1.html">
 <span>📊 SIMULASI INVENTORI KEPRIBADIAN PERSONEL</span>
-<small>Simulasi instrumen penilaian aspek psikologis dan stabilitas karakter personal yang terdiri atas 100 indikator soal utama.</small>
+<small>
+Simulasi instrumen penilaian aspek psikologis dan stabilitas karakter personal yang terdiri atas 100 indikator soal utama.
+</small>
 </div>
 
-<!-- MENU MODUL 4 -->
 <div class="menu-card" data-link="korancatver5.html">
 <span>🧠 TES KORAN CAT</span>
-<small>Mengukur hasil kerja berdasarkan tekanan waktu.</small>
+<small>
+Mengukur hasil kerja berdasarkan tekanan waktu.
+</small>
 </div>
 
-<!-- MENU MODUL 5 -->
 <div class="menu-card" data-link="kubus3d.html">
 <span>🧠 TES FIGURAL KUBUS</span>
-<small>Mengukur logika berfikir dalam bentuk gambar.</small>
+<small>
+Mengukur logika berfikir dalam bentuk gambar.
+</small>
 </div>
 
-<!-- MENU MODUL 6 -->
 <div class="menu-card" data-link="balok.html">
 <span>🧠 TES FIGURAL BALOK</span>
-<small>Mengukur logika berfikir dalam bentuk gambar.</small>
+<small>
+Mengukur logika berfikir dalam bentuk gambar.
+</small>
 </div>
 
-<!-- MENU MODUL 7 -->
 <div class="menu-card" data-link="kecerdasan_verbal11.html">
 <span>🧠 TES VERBAL</span>
-<small>Mengukur logika berfikir dalam bentuk kata.</small>
+<small>
+Mengukur logika berfikir dalam bentuk kata.
+</small>
 </div>
 
+</div>
+</div>
 
-</div>
-</div>
 </section>
 
 <div id="popup" class="popup hidden"></div>
@@ -444,85 +509,445 @@ margin-top: 40px;
 </footer>
 
 <script>
-if(!localStorage.getItem("layoutCleaned_v2")){
-    localStorage.clear();
-    localStorage.setItem("layoutCleaned_v2", "true");
+
+/* =========================================================
+   KONFIGURASI APPS SCRIPT
+   ========================================================= */
+
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbzbDujF3XDmzbFD3Od4HFWSh2fw_Tui7mnPDVbrtlvK9Df11elfiRFdTpNtb9Up27Y3/exec";
+
+const TNI_SESSION_KEY = "personaTniSession";
+
+
+/* =========================================================
+   DEVICE ID
+   ========================================================= */
+
+function getDeviceId(){
+
+let deviceId = localStorage.getItem("personaDeviceId");
+
+if(!deviceId){
+
+deviceId =
+"DEV-" +
+Math.random().toString(36).substring(2,10) +
+"-" +
+Date.now().toString(36);
+
+localStorage.setItem("personaDeviceId",deviceId);
+
 }
 
-// PENULISAN MANUAL PASSWORD ARMY001 SAMPAI ARMY050
-const passwordList = [
-    'ARMY001', 'EGA12', 'ARMY003', 'ARMY004', 'ARMY005', 'ARMY006', 'ARMY007', 'ARMY008', 'ARMY009', 'ARMY010',
-    'ARMY011', 'ARMY012', 'ARMY013', 'ARMY014', 'ARMY015', 'ARMY016', 'ARMY017', 'ARMY018', 'ARMY019', 'ARMY020',
-    'ARMY021', 'ARMY022', 'ARMY023', 'ARMY024', 'ARMY025', 'ARMY026', 'ARMY027', 'ARMY028', 'ARMY029', 'ARMY030',
-    'ARMY031', 'ARMY032', 'ARMY033', 'ARMY034', 'ARMY035', 'ARMY036', 'ARMY037', 'ARMY038', 'ARMY039', 'ARMY040',
-    'ARMY041', 'ARMY042', 'ARMY043', 'ARMY044', 'ARMY045', 'ARMY046', 'ARMY047', 'ARMY048', 'ARMY049', 'ARMY050'
-];
+return deviceId;
 
-const loginBtn = document.getElementById("loginBtn");
-const passwordInput = document.getElementById("passwordInput");
-const loginPage = document.getElementById("loginPage");
-const dashboard = document.getElementById("dashboard");
-const popup = document.getElementById("popup");
-const welcomeText = document.getElementById("welcomeText");
+}
+
+
+/* =========================================================
+   ELEMENT
+   ========================================================= */
+
+const loginBtn =
+document.getElementById("loginBtn");
+
+const passwordInput =
+document.getElementById("passwordInput");
+
+const loginPage =
+document.getElementById("loginPage");
+
+const dashboard =
+document.getElementById("dashboard");
+
+const popup =
+document.getElementById("popup");
+
+const welcomeText =
+document.getElementById("welcomeText");
+
+
+/* =========================================================
+   POPUP
+   ========================================================= */
 
 function showPopup(text){
-popup.innerText=text;
+
+popup.innerText = text;
+
 popup.classList.remove("hidden");
-setTimeout(()=>{ popup.classList.add("hidden"); },2500);
+
+setTimeout(()=>{
+popup.classList.add("hidden");
+},2500);
+
 }
 
-loginBtn.addEventListener("click",loginSystem);
 
-passwordInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") loginSystem();
-});
+/* =========================================================
+   OPEN DASHBOARD
+   ========================================================= */
 
-function loginSystem(){
-const input = passwordInput.value.trim();
+function openDashboard(session){
 
-// Pengecekan tidak sensitif huruf besar/kecil (bisa army001, Army001, ARMY001, dll)
-const isValid = passwordList.some(pass => pass.toLowerCase() === input.toLowerCase());
-
-if(!isValid){
-showPopup("Password salah.");
-return;
-}
-
-const formattedInput = input.toUpperCase();
-localStorage.setItem("loggedInUser", formattedInput);
-showPopup("Login berhasil.");
-openDashboard(formattedInput);
-}
-
-function openDashboard(user){
 loginPage.classList.add("hidden");
+
 dashboard.classList.remove("hidden");
-welcomeText.innerHTML=`Peserta Aktif: <b>${user}</b>`;
+
+if(session.testing){
+
+welcomeText.innerHTML =
+`Peserta Aktif: <b>PRC00</b>`;
+
+}else{
+
+welcomeText.innerHTML =
+`Peserta Aktif: <b>${session.password}</b>`;
+
 }
 
-const loggedUser = localStorage.getItem("loggedInUser");
-if(loggedUser && passwordList.some(pass => pass.toLowerCase() === loggedUser.toLowerCase())){
-openDashboard(loggedUser.toUpperCase());
 }
 
-document.getElementById("logoutBtn").addEventListener("click",()=>{
-localStorage.clear();
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+loginBtn.addEventListener(
+"click",
+loginSystem
+);
+
+
+passwordInput.addEventListener(
+"keydown",
+(e)=>{
+
+if(e.key === "Enter"){
+
+loginSystem();
+
+}
+
+});
+
+
+async function loginSystem(){
+
+const input =
+passwordInput.value.trim();
+
+if(!input){
+
+showPopup("Masukkan kata sandi.");
+
+return;
+
+}
+
+
+/* =========================================================
+   PRC00 — TESTING PASSWORD
+   LANGSUNG MASUK TANPA APPS SCRIPT
+   ========================================================= */
+
+if(input.toUpperCase() === "PRC00"){
+
+const testSession = {
+
+password:"PRC00",
+
+jenis:"FULL",
+
+paket:"TEST",
+
+firstLogin:null,
+
+expiry:null,
+
+testing:true
+
+};
+
+localStorage.setItem(
+TNI_SESSION_KEY,
+JSON.stringify(testSession)
+);
+
+showPopup("Mode testing aktif.");
+
+openDashboard(testSession);
+
+return;
+
+}
+
+
+/* =========================================================
+   PASSWORD NORMAL — APPS SCRIPT
+   ========================================================= */
+
+loginBtn.disabled = true;
+
+loginBtn.innerText = "MEMERIKSA...";
+
+try{
+
+const deviceId = getDeviceId();
+
+const response = await fetch(
+SCRIPT_URL +
+"?password=" +
+encodeURIComponent(input) +
+"&deviceId=" +
+encodeURIComponent(deviceId)
+);
+
+const data = await response.json();
+
+
+/* LOGIN GAGAL */
+
+if(data.status !== "success"){
+
+showPopup(
+data.message || "Password tidak valid."
+);
+
+return;
+
+}
+
+
+/* =========================================================
+   TNI / FULL SAJA
+   ========================================================= */
+
+const jenis =
+String(data.jenis || "").toUpperCase();
+
+if(jenis !== "TNI" && jenis !== "FULL"){
+
+showPopup(
+"Password ini bukan akses TNI."
+);
+
+return;
+
+}
+
+
+/* =========================================================
+   SIMPAN SESSION
+   ========================================================= */
+
+const session = {
+
+password:data.password,
+
+jenis:jenis,
+
+paket:data.paket,
+
+firstLogin:data.firstLogin,
+
+expiry:data.expiry,
+
+testing:false
+
+};
+
+localStorage.setItem(
+TNI_SESSION_KEY,
+JSON.stringify(session)
+);
+
+showPopup("Login berhasil.");
+
+openDashboard(session);
+
+}catch(error){
+
+console.error(error);
+
+showPopup(
+"Sistem sedang sibuk. Silakan coba lagi."
+);
+
+}finally{
+
+loginBtn.disabled = false;
+
+loginBtn.innerText =
+"MASUK KE DASHBOARD";
+
+}
+
+}
+
+
+/* =========================================================
+   RESTORE SESSION
+   ========================================================= */
+
+function restoreSession(){
+
+const saved =
+localStorage.getItem(TNI_SESSION_KEY);
+
+if(!saved) return;
+
+try{
+
+const session =
+JSON.parse(saved);
+
+
+/* PRC00 */
+
+if(
+session.testing === true &&
+session.password === "PRC00"
+){
+
+openDashboard(session);
+
+return;
+
+}
+
+
+/* VALIDASI JENIS */
+
+const jenis =
+String(session.jenis || "").toUpperCase();
+
+if(jenis !== "TNI" && jenis !== "FULL"){
+
+localStorage.removeItem(TNI_SESSION_KEY);
+
+return;
+
+}
+
+
+/* VALIDASI EXPIRY */
+
+if(session.expiry){
+
+const expiryTime =
+new Date(session.expiry).getTime();
+
+if(
+!isNaN(expiryTime) &&
+Date.now() > expiryTime
+){
+
+localStorage.removeItem(TNI_SESSION_KEY);
+
+showPopup("Masa akses telah berakhir.");
+
+return;
+
+}
+
+}
+
+openDashboard(session);
+
+}catch(error){
+
+localStorage.removeItem(TNI_SESSION_KEY);
+
+}
+
+}
+
+
+/* =========================================================
+   LOGOUT
+   ========================================================= */
+
+document
+.getElementById("logoutBtn")
+.addEventListener(
+"click",
+()=>{
+
+localStorage.removeItem(
+TNI_SESSION_KEY
+);
+
 location.reload();
-});
 
-document.addEventListener("contextmenu",e=>e.preventDefault());
-document.addEventListener("keydown",e=>{
-if(e.key==="F12"||(e.ctrlKey&&e.shiftKey&&e.key==="I")||(e.ctrlKey&&e.key==="u")){
-e.preventDefault();
 }
+);
+
+
+/* =========================================================
+   PROTEKSI UI DASAR
+   ========================================================= */
+
+document.addEventListener(
+"contextmenu",
+e=>e.preventDefault()
+);
+
+document.addEventListener(
+"keydown",
+e=>{
+
+if(
+e.key === "F12" ||
+(e.ctrlKey && e.shiftKey && e.key === "I") ||
+(e.ctrlKey && e.key === "u")
+){
+
+e.preventDefault();
+
+}
+
+}
+);
+
+
+/* =========================================================
+   MENU
+   ========================================================= */
+
+document
+.querySelectorAll(".menu-card")
+.forEach(card=>{
+
+card.addEventListener(
+"click",
+()=>{
+
+const target =
+card.getAttribute("data-link");
+
+if(target){
+
+window.location.href =
+target;
+
+}
+
+}
+);
+
 });
 
-document.querySelectorAll(".menu-card").forEach(card=>{
-card.addEventListener("click",()=>{
-const target=card.getAttribute("data-link");
-if(target) window.location.href=target;
-});
-});
+
+/* =========================================================
+   JALANKAN RESTORE
+   ========================================================= */
+
+restoreSession();
+
 </script>
+
 </body>
 </html>
+```
