@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -334,6 +333,7 @@ margin-top:40px;
 
 /* RESPONSIVE */
 @media(max-width:768px){
+
 .login-card{
 padding:40px 24px;
 border-radius:26px;
@@ -355,6 +355,7 @@ border-radius:18px;
 .menu-grid{
 grid-template-columns:1fr;
 }
+
 }
 </style>
 </head>
@@ -363,12 +364,18 @@ grid-template-columns:1fr;
 
 <div id="loadingScreen" style="display:none;">
 <div class="loader"></div>
+
 <h3 style="color:#1a1a1a;font-weight:600;">
 Menghubungkan ke Sistem...
 </h3>
+
 </div>
 
-<!-- LOGIN PAGE -->
+
+<!-- =========================================================
+     LOGIN PAGE
+========================================================= -->
+
 <section id="loginPage" class="center-page">
 
 <div class="login-card">
@@ -385,7 +392,7 @@ PERSONA RESEARCH & CONSULTING
 <input
 type="password"
 id="passwordInput"
-placeholder="Masukkan Kata Sandi Akses Portal"
+placeholder="Masukkan Kata Sandi / Kode Akses"
 autocomplete="off"
 >
 
@@ -394,9 +401,14 @@ MASUK KE DASHBOARD
 </button>
 
 </div>
+
 </section>
 
-<!-- DASHBOARD -->
+
+<!-- =========================================================
+     DASHBOARD
+========================================================= -->
+
 <section id="dashboard" class="hidden">
 
 <div class="main-header">
@@ -404,7 +416,10 @@ MASUK KE DASHBOARD
 <div class="header-top">
 
 <div>
-<h2>Persona Research & Consulting</h2>
+
+<h2>
+Persona Research & Consulting
+</h2>
 
 <p
 id="welcomeText"
@@ -423,15 +438,23 @@ Keluar
 
 </div>
 
+
 <div class="notice-bar">
 
 <marquee scrollamount="4">
+
 📢 PENGUMUMAN: Kerjakan simulasi latihan instrumen tes ini dengan fokus dan teliti demi hasil grafik analisis performa yang maksimal.
+
 </marquee>
 
 </div>
 
 </div>
+
+
+<!-- =========================================================
+     MENU TNI
+========================================================= -->
 
 <div class="cat-wrapper">
 
@@ -439,104 +462,206 @@ Keluar
 Daftar Simulasi Latihan Instrumen
 </div>
 
+
 <div class="menu-grid">
 
-<div class="menu-card" data-link="army_alpha_cat.html">
-<span>🧠 TES ARMY ALPHA CAT</span>
+
+<div
+class="menu-card"
+data-link="army_alpha_cat.html"
+>
+
+<span>
+🧠 TES ARMY ALPHA CAT
+</span>
+
 <small>
 Untuk mengukur daya tangkap instruksi verbal, kecepatan pemrosesan informasi, ketelitian, serta konsentrasi kognitif secara langsung dan otomatis.
 </small>
+
 </div>
 
-<div class="menu-card" data-link="kecerdasan_tni.html">
-<span>🧠 TES KECERDASAN TNI</span>
+
+<div
+class="menu-card"
+data-link="kecerdasan_tni.html"
+>
+
+<span>
+🧠 TES KECERDASAN TNI
+</span>
+
 <small>
 Mengukur kemampuan penalaran logis, analitis, serta pemecahan masalah kognitif terstruktur siswa di bawah batas waktu tertentu.
 </small>
+
 </div>
 
-<div class="menu-card" data-link="kecedasan_dasar_1.html">
-<span>🧠 TES KECERDASAN</span>
+
+<div
+class="menu-card"
+data-link="kecedasan_dasar_1.html"
+>
+
+<span>
+🧠 TES KECERDASAN
+</span>
+
 <small>
 Mengukur kemampuan penalaran logis, analitis, serta pemecahan masalah kognitif terstruktur siswa di bawah batas waktu tertentu.
 </small>
+
 </div>
 
-<div class="menu-card" data-link="kepribadian_1.html">
-<span>📊 SIMULASI INVENTORI KEPRIBADIAN PERSONEL</span>
+
+<div
+class="menu-card"
+data-link="kepribadian_1.html"
+>
+
+<span>
+📊 SIMULASI INVENTORI KEPRIBADIAN PERSONEL
+</span>
+
 <small>
 Simulasi instrumen penilaian aspek psikologis dan stabilitas karakter personal yang terdiri atas 100 indikator soal utama.
 </small>
+
 </div>
 
-<div class="menu-card" data-link="korancatver5.html">
-<span>🧠 TES KORAN CAT</span>
+
+<div
+class="menu-card"
+data-link="korancatver5.html"
+>
+
+<span>
+🧠 TES KORAN CAT
+</span>
+
 <small>
 Mengukur hasil kerja berdasarkan tekanan waktu.
 </small>
+
 </div>
 
-<div class="menu-card" data-link="kubus3d.html">
-<span>🧠 TES FIGURAL KUBUS</span>
+
+<div
+class="menu-card"
+data-link="kubus3d.html"
+>
+
+<span>
+🧠 TES FIGURAL KUBUS
+</span>
+
 <small>
 Mengukur logika berfikir dalam bentuk gambar.
 </small>
+
 </div>
 
-<div class="menu-card" data-link="balok.html">
-<span>🧠 TES FIGURAL BALOK</span>
+
+<div
+class="menu-card"
+data-link="balok.html"
+>
+
+<span>
+🧠 TES FIGURAL BALOK
+</span>
+
 <small>
 Mengukur logika berfikir dalam bentuk gambar.
 </small>
+
 </div>
 
-<div class="menu-card" data-link="kecerdasan_verbal11.html">
-<span>🧠 TES VERBAL</span>
+
+<div
+class="menu-card"
+data-link="kecerdasan_verbal11.html"
+>
+
+<span>
+🧠 TES VERBAL
+</span>
+
 <small>
 Mengukur logika berfikir dalam bentuk kata.
 </small>
+
 </div>
+
 
 </div>
 </div>
 
 </section>
 
-<div id="popup" class="popup hidden"></div>
+
+<div
+id="popup"
+class="popup hidden"
+></div>
+
 
 <footer>
-&copy; PERSONA RESEARCH & CONSULTING 087742515786 &bull; ALL RIGHTS RESERVED
+
+&copy; PERSONA RESEARCH & CONSULTING 087742515786
+&bull;
+ALL RIGHTS RESERVED
+
 </footer>
+
 
 <script>
 
 /* =========================================================
    KONFIGURASI APPS SCRIPT
-   ========================================================= */
+========================================================= */
+
+
+/* B2B / AKSES LAMA */
 
 const SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbzbDujF3XDmzbFD3Od4HFWSh2fw_Tui7mnPDVbrtlvK9Df11elfiRFdTpNtb9Up27Y3/exec";
 
-const TNI_SESSION_KEY = "personaTniSession";
+
+/* INDIVIDUAL ACCESS */
+
+const INDIVIDUAL_SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbxqe_SvS0wH_iaTUwCNLufJ9wmqJreHFj7fZfGq7PqJFqX3FoujguRCOr2VuXZoBGyh/exec";
+
+
+const TNI_SESSION_KEY =
+"personaTniSession";
 
 
 /* =========================================================
    DEVICE ID
-   ========================================================= */
+========================================================= */
 
 function getDeviceId(){
 
-let deviceId = localStorage.getItem("personaDeviceId");
+let deviceId =
+localStorage.getItem("personaDeviceId");
 
 if(!deviceId){
 
 deviceId =
 "DEV-" +
-Math.random().toString(36).substring(2,10) +
+Math.random()
+.toString(36)
+.substring(2,10) +
 "-" +
-Date.now().toString(36);
+Date.now()
+.toString(36);
 
-localStorage.setItem("personaDeviceId",deviceId);
+localStorage.setItem(
+"personaDeviceId",
+deviceId
+);
 
 }
 
@@ -546,8 +671,19 @@ return deviceId;
 
 
 /* =========================================================
+   VALIDASI KODE INDIVIDUAL TNI
+========================================================= */
+
+function isIndividualTniCode(code){
+
+return /^(14TNI|30TNI)\d{2}$/i.test(code);
+
+}
+
+
+/* =========================================================
    ELEMENT
-   ========================================================= */
+========================================================= */
 
 const loginBtn =
 document.getElementById("loginBtn");
@@ -570,7 +706,7 @@ document.getElementById("welcomeText");
 
 /* =========================================================
    POPUP
-   ========================================================= */
+========================================================= */
 
 function showPopup(text){
 
@@ -579,15 +715,59 @@ popup.innerText = text;
 popup.classList.remove("hidden");
 
 setTimeout(()=>{
+
 popup.classList.add("hidden");
+
 },2500);
 
 }
 
 
 /* =========================================================
+   FORMAT TANGGAL
+========================================================= */
+
+function formatDate(value){
+
+if(!value){
+return "";
+}
+
+let date;
+
+if(typeof value === "number"){
+
+date = new Date(value);
+
+}else{
+
+date = new Date(value);
+
+}
+
+if(isNaN(date.getTime())){
+
+return value;
+
+}
+
+return date.toLocaleString(
+"id-ID",
+{
+day:"2-digit",
+month:"2-digit",
+year:"numeric",
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+}
+
+
+/* =========================================================
    OPEN DASHBOARD
-   ========================================================= */
+========================================================= */
 
 function openDashboard(session){
 
@@ -595,30 +775,57 @@ loginPage.classList.add("hidden");
 
 dashboard.classList.remove("hidden");
 
+
+/* TESTING */
+
 if(session.testing){
 
 welcomeText.innerHTML =
 `Peserta Aktif: <b>PRC00</b>`;
 
-}else{
+return;
+
+}
+
+
+/* INDIVIDUAL */
+
+if(session.individual){
+
+welcomeText.innerHTML =
+`Kode Akses: <b>${session.password}</b>` +
+(session.expiry
+?
+`<br><span style="font-size:12px;color:#888;">
+Aktif sampai: ${formatDate(session.expiry)}
+</span>`
+:
+"");
+
+return;
+
+}
+
+
+/* B2B */
 
 welcomeText.innerHTML =
 `Peserta Aktif: <b>${session.password}</b>`;
 
 }
 
-}
-
 
 /* =========================================================
-   LOGIN
-   ========================================================= */
+   LOGIN BUTTON
+========================================================= */
 
 loginBtn.addEventListener(
 "click",
 loginSystem
 );
 
+
+/* ENTER */
 
 passwordInput.addEventListener(
 "keydown",
@@ -633,14 +840,21 @@ loginSystem();
 });
 
 
+/* =========================================================
+   LOGIN SYSTEM
+========================================================= */
+
 async function loginSystem(){
 
 const input =
 passwordInput.value.trim();
 
+
 if(!input){
 
-showPopup("Masukkan kata sandi.");
+showPopup(
+"Masukkan kata sandi atau kode akses."
+);
 
 return;
 
@@ -648,9 +862,8 @@ return;
 
 
 /* =========================================================
-   PRC00 — TESTING PASSWORD
-   LANGSUNG MASUK TANPA APPS SCRIPT
-   ========================================================= */
+   PRC00 — TESTING
+========================================================= */
 
 if(input.toUpperCase() === "PRC00"){
 
@@ -666,7 +879,9 @@ firstLogin:null,
 
 expiry:null,
 
-testing:true
+testing:true,
+
+individual:false
 
 };
 
@@ -675,7 +890,9 @@ TNI_SESSION_KEY,
 JSON.stringify(testSession)
 );
 
-showPopup("Mode testing aktif.");
+showPopup(
+"Mode testing aktif."
+);
 
 openDashboard(testSession);
 
@@ -685,34 +902,44 @@ return;
 
 
 /* =========================================================
-   PASSWORD NORMAL — APPS SCRIPT
-   ========================================================= */
+   INDIVIDUAL TNI
+========================================================= */
+
+if(isIndividualTniCode(input)){
 
 loginBtn.disabled = true;
 
-loginBtn.innerText = "MEMERIKSA...";
+loginBtn.innerText =
+"MEMERIKSA...";
+
 
 try{
 
-const deviceId = getDeviceId();
+const deviceId =
+getDeviceId();
 
-const response = await fetch(
-SCRIPT_URL +
-"?password=" +
-encodeURIComponent(input) +
+
+const response =
+await fetch(
+INDIVIDUAL_SCRIPT_URL +
+"?code=" +
+encodeURIComponent(input.toUpperCase()) +
 "&deviceId=" +
 encodeURIComponent(deviceId)
 );
 
-const data = await response.json();
+
+const data =
+await response.json();
 
 
-/* LOGIN GAGAL */
+/* GAGAL */
 
 if(data.status !== "success"){
 
 showPopup(
-data.message || "Password tidak valid."
+data.message ||
+"Kode akses tidak valid."
 );
 
 return;
@@ -720,14 +947,134 @@ return;
 }
 
 
+/* =====================================================
+   SIMPAN INDIVIDUAL SESSION
+===================================================== */
+
+const session = {
+
+password:
+data.code ||
+input.toUpperCase(),
+
+jenis:"TNI",
+
+paket:
+data.produk ||
+"TNI INDIVIDUAL",
+
+firstLogin:
+data.mulai ||
+null,
+
+expiry:
+data.expiry ||
+null,
+
+testing:false,
+
+individual:true
+
+};
+
+
+localStorage.setItem(
+TNI_SESSION_KEY,
+JSON.stringify(session)
+);
+
+
+showPopup(
+"Akses TNI berhasil diaktifkan."
+);
+
+openDashboard(session);
+
+return;
+
+
+}catch(error){
+
+console.error(error);
+
+showPopup(
+"Sistem sedang sibuk. Silakan coba lagi."
+);
+
+return;
+
+
+}finally{
+
+loginBtn.disabled = false;
+
+loginBtn.innerText =
+"MASUK KE DASHBOARD";
+
+}
+
+}
+
+
 /* =========================================================
+   B2B PASSWORD NORMAL
+========================================================= */
+
+loginBtn.disabled = true;
+
+loginBtn.innerText =
+"MEMERIKSA...";
+
+
+try{
+
+const deviceId =
+getDeviceId();
+
+
+const response =
+await fetch(
+SCRIPT_URL +
+"?password=" +
+encodeURIComponent(input) +
+"&deviceId=" +
+encodeURIComponent(deviceId)
+);
+
+
+const data =
+await response.json();
+
+
+/* =====================================================
+   LOGIN GAGAL
+===================================================== */
+
+if(data.status !== "success"){
+
+showPopup(
+data.message ||
+"Password tidak valid."
+);
+
+return;
+
+}
+
+
+/* =====================================================
    TNI / FULL SAJA
-   ========================================================= */
+===================================================== */
 
 const jenis =
-String(data.jenis || "").toUpperCase();
+String(data.jenis || "")
+.toUpperCase();
 
-if(jenis !== "TNI" && jenis !== "FULL"){
+
+if(
+jenis !== "TNI" &&
+jenis !== "FULL"
+){
 
 showPopup(
 "Password ini bukan akses TNI."
@@ -738,34 +1085,46 @@ return;
 }
 
 
-/* =========================================================
-   SIMPAN SESSION
-   ========================================================= */
+/* =====================================================
+   SIMPAN SESSION B2B
+===================================================== */
 
 const session = {
 
-password:data.password,
+password:
+data.password,
 
-jenis:jenis,
+jenis:
+jenis,
 
-paket:data.paket,
+paket:
+data.paket,
 
-firstLogin:data.firstLogin,
+firstLogin:
+data.firstLogin,
 
-expiry:data.expiry,
+expiry:
+data.expiry,
 
-testing:false
+testing:false,
+
+individual:false
 
 };
+
 
 localStorage.setItem(
 TNI_SESSION_KEY,
 JSON.stringify(session)
 );
 
-showPopup("Login berhasil.");
+
+showPopup(
+"Login berhasil."
+);
 
 openDashboard(session);
+
 
 }catch(error){
 
@@ -789,14 +1148,20 @@ loginBtn.innerText =
 
 /* =========================================================
    RESTORE SESSION
-   ========================================================= */
+========================================================= */
 
 function restoreSession(){
 
 const saved =
 localStorage.getItem(TNI_SESSION_KEY);
 
-if(!saved) return;
+
+if(!saved){
+
+return;
+
+}
+
 
 try{
 
@@ -804,7 +1169,9 @@ const session =
 JSON.parse(saved);
 
 
-/* PRC00 */
+/* =====================================================
+   PRC00
+===================================================== */
 
 if(
 session.testing === true &&
@@ -818,35 +1185,48 @@ return;
 }
 
 
-/* VALIDASI JENIS */
+/* =====================================================
+   INDIVIDUAL TNI
+===================================================== */
 
-const jenis =
-String(session.jenis || "").toUpperCase();
+if(session.individual === true){
 
-if(jenis !== "TNI" && jenis !== "FULL"){
+const code =
+String(session.password || "")
+.toUpperCase();
 
-localStorage.removeItem(TNI_SESSION_KEY);
+
+if(!/^(14TNI|30TNI)\d{2}$/.test(code)){
+
+localStorage.removeItem(
+TNI_SESSION_KEY
+);
 
 return;
 
 }
 
 
-/* VALIDASI EXPIRY */
+/* CEK EXPIRY */
 
 if(session.expiry){
 
 const expiryTime =
 new Date(session.expiry).getTime();
 
+
 if(
 !isNaN(expiryTime) &&
 Date.now() > expiryTime
 ){
 
-localStorage.removeItem(TNI_SESSION_KEY);
+localStorage.removeItem(
+TNI_SESSION_KEY
+);
 
-showPopup("Masa akses telah berakhir.");
+showPopup(
+"Masa akses telah berakhir."
+);
 
 return;
 
@@ -854,11 +1234,77 @@ return;
 
 }
 
+
 openDashboard(session);
+
+return;
+
+}
+
+
+/* =====================================================
+   B2B
+===================================================== */
+
+const jenis =
+String(session.jenis || "")
+.toUpperCase();
+
+
+if(
+jenis !== "TNI" &&
+jenis !== "FULL"
+){
+
+localStorage.removeItem(
+TNI_SESSION_KEY
+);
+
+return;
+
+}
+
+
+/* =====================================================
+   CEK EXPIRY B2B
+===================================================== */
+
+if(session.expiry){
+
+const expiryTime =
+new Date(session.expiry).getTime();
+
+
+if(
+!isNaN(expiryTime) &&
+Date.now() > expiryTime
+){
+
+localStorage.removeItem(
+TNI_SESSION_KEY
+);
+
+showPopup(
+"Masa akses telah berakhir."
+);
+
+return;
+
+}
+
+}
+
+
+openDashboard(session);
+
 
 }catch(error){
 
-localStorage.removeItem(TNI_SESSION_KEY);
+console.error(error);
+
+localStorage.removeItem(
+TNI_SESSION_KEY
+);
 
 }
 
@@ -867,7 +1313,7 @@ localStorage.removeItem(TNI_SESSION_KEY);
 
 /* =========================================================
    LOGOUT
-   ========================================================= */
+========================================================= */
 
 document
 .getElementById("logoutBtn")
@@ -887,12 +1333,13 @@ location.reload();
 
 /* =========================================================
    PROTEKSI UI DASAR
-   ========================================================= */
+========================================================= */
 
 document.addEventListener(
 "contextmenu",
 e=>e.preventDefault()
 );
+
 
 document.addEventListener(
 "keydown",
@@ -914,7 +1361,7 @@ e.preventDefault();
 
 /* =========================================================
    MENU
-   ========================================================= */
+========================================================= */
 
 document
 .querySelectorAll(".menu-card")
@@ -926,6 +1373,7 @@ card.addEventListener(
 
 const target =
 card.getAttribute("data-link");
+
 
 if(target){
 
@@ -942,7 +1390,7 @@ target;
 
 /* =========================================================
    JALANKAN RESTORE
-   ========================================================= */
+========================================================= */
 
 restoreSession();
 
@@ -950,4 +1398,3 @@ restoreSession();
 
 </body>
 </html>
-```
