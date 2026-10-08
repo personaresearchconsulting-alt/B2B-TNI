@@ -22,7 +22,7 @@
         .ins-item h4 { font-weight: 900; margin-bottom: 5px; font-size: 15px; color: #000; }
         .ins-item p { font-size: 13px; color: #444; line-height: 1.5; }
         .speaker-note { color: var(--accent-gold); font-size: 13px; font-weight: 700; margin-bottom: 20px; }
-        .btn-cek { background: var(--accent-gold); color: white; border: none; padding: 15px; width: 100%; font-weight: 800; border-radius: 8px; cursor: pointer; margin-bottom: 10px; font-size: 14px; text-transform: uppercase; }
+        .btn-cek { background: var(--accent-gold); color: white; border: none; padding: 15px; width: 100%; font-weight: 800; border-radius: 8px; cursor: pointer; margin-bottom: 15px; font-size: 14px; text-transform: uppercase; }
         .btn-mulai { background: var(--primary); color: white; border: none; padding: 15px; width: 100%; font-weight: 800; border-radius: 8px; cursor: pointer; font-size: 14px; text-transform: uppercase; }
 
         /* --- BOARD & INTERFACE --- */
@@ -31,10 +31,10 @@
         
         .container { flex: 1; display: flex; overflow: hidden; align-items: flex-end; position: relative; background: white; padding-left: 45px; }
         
-        /* PENOMORAN UTAMA GLOBAL (FIXED DI KIRI, TIDAK AKAN PERNAH HILANG/BERGESER) */
+        /* PENOMORAN UTAMA GLOBAL (FIXED DI KIRI) */
         .global-number-ruler { 
             position: fixed; 
-            top: 67px; /* Di bawah header */
+            top: 67px; 
             left: 0; 
             width: 45px; 
             height: calc(100vh - 67px); 
@@ -48,7 +48,7 @@
         .ruler-num { 
             font-size: 12px; 
             font-weight: 900; 
-            color: #1a252f !important; /* WARNA NAVY TEGAS */
+            color: #1a252f !important; 
             height: 40px; 
             display: flex; 
             align-items: center; 
@@ -73,13 +73,11 @@
             padding-bottom: 20px; 
         }
 
-        /* KOLOM ANGKA (WARNA HITAM KHUSUS SOAL) */
         .number-column { flex: 1; display: flex; flex-direction: column-reverse; background: white; position: relative; }
         
-        .item { font-size: 22px; font-weight: 800; text-align: center; height: 40px; color: #000000 !important; /* WARNA HITAM UNTUK SOAL */ position: relative; display: flex; justify-content: center; align-items: center; }
+        .item { font-size: 22px; font-weight: 800; text-align: center; height: 40px; color: #000000 !important; position: relative; display: flex; justify-content: center; align-items: center; }
         .ans-preview { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-size: 13px; color: #27ae60; font-weight: 900; }
         
-        /* KOTAK MERAH MENYATU UNTUK SEPASANG ANGKA (BOTTOM -> TOP) */
         .active-unified-box {
             position: absolute;
             left: 3px;
@@ -114,7 +112,7 @@
 </head>
 <body oncontextmenu="return false">
 
-<!-- PENOMORAN UTAMA GLOBAL (DIPINDAH KELUAR BOARD AGAR SELAMANYA MENETAP DI KIRI LAYAR) -->
+<!-- PENOMORAN UTAMA GLOBAL -->
 <div class="global-number-ruler" id="global-ruler"></div>
 
 <div id="login-screen">
@@ -128,16 +126,9 @@
             <div class="ins-item"><h4>4. Faktor Penilaian</h4><p>Evaluasi mencakup Kecepatan (Panker), Ketetapan/Ritme (Janker), Ketahanan (Hanker), dan Keajegan (Tianker).</p></div>
         </div>
         <p class="speaker-note">Pastikan Volume Speaker Anda Aktif untuk Mendengar Alarm Bunyi Pindah Lajur.</p>
-        
-        <!-- INTEGRASI INPUT PASSWORD DENGAN GAYA ELEMEN ASLI -->
-        <div style="margin-bottom: 20px; text-align: left;">
-            <label style="font-weight: 700; font-size: 13px; color: var(--primary); display: block; margin-bottom: 8px;">PASSWORD AKSES / KODE PESERTA:</label>
-            <input type="password" id="input-password" placeholder="Masukkan Password" style="width: 100%; padding: 12px 15px; font-size: 14px; border: 2px solid #dcdde1; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-weight: 700; outline: none;">
-            <div id="login-msg" style="color: var(--accent-red); font-size: 13px; font-weight: 700; margin-top: 8px; display: none;"></div>
-        </div>
 
         <button class="btn-cek" onclick="playBeep(600, 0.2)">📢 KLIK UNTUK TES SUARA (CEK SPEAKER)</button>
-        <button class="btn-mulai" id="btn-login-submit" onclick="handleLoginAndStart()">SAYA MENGERTI, MULAI TES</button>
+        <button class="btn-mulai" onclick="startApp()">SAYA MENGERTI, MULAI TES</button>
     </div>
 </div>
 
@@ -187,74 +178,6 @@
 </div>
 
 <script>
-    /* ==========================================================================
-       INTEGRASI APPS SCRIPT & SISTEM AKSES
-       ========================================================================== */
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz0sL2zSd39sFg4eyFmPlzE9_dKW_aFQF0RzUOxWimGY5T6SINnUF-45BntFS-sUxg1/exec";
-
-    function getDeviceId() {
-        let deviceId = localStorage.getItem("PRC_KREAPELIN_DEVICE_ID");
-        if (!deviceId) {
-            deviceId = "DEV-" + Date.now().toString(36) + "-" + Math.random().toString(36).substring(2, 10);
-            localStorage.setItem("PRC_KREAPELIN_DEVICE_ID", deviceId);
-        }
-        return deviceId;
-    }
-
-    async function handleLoginAndStart() {
-        const passInput = document.getElementById("input-password");
-        const password = passInput ? passInput.value.trim() : "";
-        const msgEl = document.getElementById("login-msg");
-        const btnSubmit = document.getElementById("btn-login-submit");
-
-        if (!password) {
-            if (msgEl) {
-                msgEl.innerText = "Silakan masukkan password terlebih dahulu!";
-                msgEl.style.display = "block";
-            }
-            return;
-        }
-
-        if (msgEl) msgEl.style.display = "none";
-        if (btnSubmit) {
-            btnSubmit.disabled = true;
-            btnSubmit.innerText = "MEMERIKSA HAK AKSES...";
-        }
-
-        const deviceId = getDeviceId();
-        const requestUrl = `${SCRIPT_URL}?action=kreapelin&password=${encodeURIComponent(password)}&deviceId=${encodeURIComponent(deviceId)}`;
-
-        try {
-            const response = await fetch(requestUrl);
-            const data = await response.json();
-
-            if (data && data.success && data.aksesKreapelin) {
-                startApp(); // MEMANGGUL FUNGSI START APP ASLI
-            } else {
-                if (msgEl) {
-                    msgEl.innerText = data.message || "Akses ditolak. Password tidak valid, expired, atau perangkat tidak terdaftar.";
-                    msgEl.style.display = "block";
-                }
-                if (btnSubmit) {
-                    btnSubmit.disabled = false;
-                    btnSubmit.innerText = "SAYA MENGERTI, MULAI TES";
-                }
-            }
-        } catch (err) {
-            if (msgEl) {
-                msgEl.innerText = "Gagal terhubung ke server. Periksa koneksi internet Anda.";
-                msgEl.style.display = "block";
-            }
-            if (btnSubmit) {
-                btnSubmit.disabled = false;
-                btnSubmit.innerText = "SAYA MENGERTI, MULAI TES";
-            }
-        }
-    }
-
-    /* ==========================================================================
-       KODE ASLI TES KREAPELIN (TIDAK ADA FUNGSI ASLI YANG DIUBAH / DIHAPUS)
-       ========================================================================== */
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     function playBeep(freq = 600, duration = 0.15) {
         if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -500,7 +423,7 @@
     }
 
     function downloadPDF() { 
-        html2pdf().from(document.getElementById('pdf-content')).save('Laporan_Hasil_Tes_Kreaplin_PRC.pdf'); 
+        html2pdf().from(document.getElementById('pdf-content')).save('Laporan_Hasil_Tes_Hitung_Cepat_PRC.pdf'); 
     }
 
     const kp = document.getElementById('keypad'), dragArea = document.getElementById('drag-area');
