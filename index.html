@@ -306,7 +306,7 @@ line-height: 1.5;
 display: block;
 }
 
-/* HOVER EFFECT (Midnight Blue Lebih Gelap) */
+/* HOVER EFFECT */
 .menu-card:hover{
 transform:translateY(-5px);
 background: #0B0B26 !important; 
@@ -358,7 +358,7 @@ margin-top: 40px;
 
 <section id="loginPage" class="center-page">
 <div class="login-card">
-<h1>PORTAL PORTAL UTAMA<br>SIMULASI ASESMEN</h1>
+<h1>PORTAL UTAMA<br>SIMULASI ASESMEN</h1>
 <p class="subtitle">PERSONA RESEARCH & CONSULTING</p>
 <input type="password" id="passwordInput" placeholder="Masukkan Kata Sandi Akses Portal">
 <button class="login-btn" id="loginBtn">MASUK KE DASHBOARD</button>
@@ -381,7 +381,7 @@ margin-top: 40px;
 </div>
 </div>
 
-<!-- KATEGORI INTELEGENSI TNI (DI POSISI PALING ATAS: MENU UTAMA KE FOLDER) -->
+<!-- KATEGORI INTELEGENSI TNI -->
 <div class="cat-wrapper">
 <div class="cat-title">INTELEGENSI TNI</div>
 <div class="menu-grid">
@@ -396,59 +396,49 @@ margin-top: 40px;
 <div class="cat-wrapper">
 <div class="cat-title">Daftar Simulasi Latihan Instrumen</div>
 <div class="menu-grid">
-<!-- MENU MODUL -->
 <div class="menu-card" data-link="army_alpha_cat.html">
 <span>🧠 TES ARMY ALPHA CAT </span>
 <small>Untuk mengukur daya tangkap instruksi verbal, kecepatan pemrosesan informasi, ketelitian, serta konsentrasi kognitif secara langsung dan otomatis.</small>
 </div>
 
-<!-- MENU MODUL 1 -->
 <div class="menu-card" data-link="kecerdasan_tni.html">
 <span>🧠 TES KECERDASAN TNI </span>
 <small>Mengukur kemampuan penalaran logis, analitis, serta pemecahan masalah kognitif terstruktur siswa di bawah batas waktu tertentu.</small>
 </div>
 
-<!-- MENU MODUL 2 -->
 <div class="menu-card" data-link="kecedasan_dasar_1.html">
 <span>🧠 TES KECERDASAN </span>
 <small>Mengukur kemampuan penalaran logis, analitis, serta pemecahan masalah kognitif terstruktur siswa di bawah batas waktu tertentu.</small>
 </div>
 
-
-<!-- MENU MODUL 3 -->
 <div class="menu-card" data-link="kepribadian_1.html">
 <span>📊 SIMULASI INVENTORI KEPRIBADIAN PERSONEL</span>
 <small>Simulasi instrumen penilaian aspek psikologis dan stabilitas karakter personal yang terdiri atas 100 indikator soal utama.</small>
 </div>
 
-<!-- MENU MODUL 4 -->
 <div class="menu-card" data-link="korancatver5.html">
 <span>🧠 TES KORAN CAT</span>
 <small>Mengukur hasil kerja berdasarkan tekanan waktu.</small>
 </div>
 
-<!-- MENU MODUL KREAPLIN -->
 <div class="menu-card" data-link="kreaplin.html">
 <span>🧠 TES KREAPLIN</span>
 <small>Mengukur ketahanan kerja, keajegan, ketelitian, serta stabilitas emosi di bawah tekanan waktu.</small>
 </div>
 
-<!-- MENU MODUL 5 -->
 <div class="menu-card" data-link="kubus3d.html">
 <span>🧠 TES FIGURAL KUBUS</span>
-<small>Mengukur logika berfikir dalam bentuk gambar.</small>
+<small>Logika berpikir bentuk gambar 3 dimensi.</small>
 </div>
 
-<!-- MENU MODUL 6 -->
 <div class="menu-card" data-link="balok.html">
 <span>🧠 TES FIGURAL BALOK</span>
-<small>Mengukur logika berfikir dalam bentuk gambar.</small>
+<small>Logika berpikir ruang dan bentuk.</small>
 </div>
 
-<!-- MENU MODUL 7 -->
 <div class="menu-card" data-link="kecerdasan_verbal11.html">
 <span>🧠 TES VERBAL</span>
-<small>Mengukur logika berfikir dalam bentuk kata.</small>
+<small>Mengukur logika berpikir verbal.</small>
 </div>
 </div>
 </div>
@@ -461,19 +451,8 @@ margin-top: 40px;
 </footer>
 
 <script>
-if(!localStorage.getItem("layoutCleaned_v2")){
-    localStorage.clear();
-    localStorage.setItem("layoutCleaned_v2", "true");
-}
-
-// PENULISAN MANUAL PASSWORD ARMY001 SAMPAI ARMY050
-const passwordList = [
-    'ARMY001', 'EGA12', 'CANDRA17', 'yeari', 'ARMY005', 'YANDHETA1', 'DIDIT010908', 'IMAMARYARR', 'ARMY009', '@HUDA02',
-    'ARMY011', 'ARMY012', 'ARMY013', 'ARMY014', 'ARMY015', 'ARMY016', 'ARMY017', 'ARMY018', 'ARMY019', 'ARMY020',
-    'ARMY021', 'ARMY022', 'ARMY023', 'ARMY024', 'ARMY025', 'ARMY026', 'ARMY027', 'ARMY028', 'ARMY029', 'ARMY030',
-    'ARMY031', 'ARMY032', 'ARMY033', 'ARMY034', 'ARMY035', 'ARMY036', 'ARMY037', 'ARMY038', 'ARMY039', 'ARMY040',
-    'ARMY041', 'ARMY042', 'ARMY043', 'ARMY044', 'ARMY045', 'ARMY046', 'ARMY047', 'ARMY048', 'ARMY049', 'ARMY050'
-];
+// Password tunggal universal untuk semua device
+const MASTER_PASSWORD = "30TNI47";
 
 const loginBtn = document.getElementById("loginBtn");
 const passwordInput = document.getElementById("passwordInput");
@@ -483,12 +462,12 @@ const popup = document.getElementById("popup");
 const welcomeText = document.getElementById("welcomeText");
 
 function showPopup(text){
-popup.innerText=text;
+popup.innerText = text;
 popup.classList.remove("hidden");
-setTimeout(()=>{ popup.classList.add("hidden"); },2500);
+setTimeout(()=>{ popup.classList.add("hidden"); }, 2500);
 }
 
-loginBtn.addEventListener("click",loginSystem);
+loginBtn.addEventListener("click", loginSystem);
 
 passwordInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") loginSystem();
@@ -497,47 +476,44 @@ passwordInput.addEventListener("keydown", (e) => {
 function loginSystem(){
 const input = passwordInput.value.trim();
 
-// Pengecekan tidak sensitif huruf besar/kecil (bisa army001, Army001, ARMY001, dll)
-const isValid = passwordList.some(pass => pass.toLowerCase() === input.toLowerCase());
-
-if(!isValid){
+// Pengecekan password (case-insensitive agar fleksibel)
+if(input.toLowerCase() !== MASTER_PASSWORD.toLowerCase()){
 showPopup("Password salah.");
 return;
 }
 
-const formattedInput = input.toUpperCase();
-localStorage.setItem("loggedInUser", formattedInput);
+localStorage.setItem("isLoggedIn", "true");
 showPopup("Login berhasil.");
-openDashboard(formattedInput);
+openDashboard();
 }
 
-function openDashboard(user){
+function openDashboard(){
 loginPage.classList.add("hidden");
 dashboard.classList.remove("hidden");
-welcomeText.innerHTML=`Peserta Aktif: <b>${user}</b>`;
+welcomeText.innerHTML = `Status Sesi: <b>Aktif (Multi-Device)</b>`;
 }
 
-const loggedUser = localStorage.getItem("loggedInUser");
-if(loggedUser && passwordList.some(pass => pass.toLowerCase() === loggedUser.toLowerCase())){
-openDashboard(loggedUser.toUpperCase());
+// Auto login jika device ini sudah pernah memasukkan password yang benar
+if(localStorage.getItem("isLoggedIn") === "true"){
+openDashboard();
 }
 
-document.getElementById("logoutBtn").addEventListener("click",()=>{
-localStorage.clear();
+document.getElementById("logoutBtn").addEventListener("click", ()=>{
+localStorage.removeItem("isLoggedIn");
 location.reload();
 });
 
-document.addEventListener("contextmenu",e=>e.preventDefault());
-document.addEventListener("keydown",e=>{
-if(e.key==="F12"||(e.ctrlKey&&e.shiftKey&&e.key==="I")||(e.ctrlKey&&e.key==="u")){
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("keydown", e => {
+if(e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I") || (e.ctrlKey && e.key === "u")){
 e.preventDefault();
 }
 });
 
-document.querySelectorAll(".menu-card[data-link]").forEach(card=>{
-card.addEventListener("click",()=>{
-const target=card.getAttribute("data-link");
-if(target) window.location.href=target;
+document.querySelectorAll(".menu-card[data-link]").forEach(card => {
+card.addEventListener("click", () => {
+const target = card.getAttribute("data-link");
+if(target) window.location.href = target;
 });
 });
 </script>
