@@ -451,8 +451,8 @@ margin-top: 40px;
 </footer>
 
 <script>
-// Password tunggal universal untuk semua device
-const MASTER_PASSWORD = "30TNI47";
+// Daftar password yang diizinkan masuk
+const VALID_PASSWORDS = ["PRC00", "30TNI47"];
 
 const loginBtn = document.getElementById("loginBtn");
 const passwordInput = document.getElementById("passwordInput");
@@ -476,8 +476,9 @@ passwordInput.addEventListener("keydown", (e) => {
 function loginSystem(){
 const input = passwordInput.value.trim();
 
-// Pengecekan password (case-insensitive agar fleksibel)
-if(input.toLowerCase() !== MASTER_PASSWORD.toLowerCase()){
+const isValid = VALID_PASSWORDS.some(pass => pass.toLowerCase() === input.toLowerCase());
+
+if(!isValid){
 showPopup("Password salah.");
 return;
 }
@@ -490,10 +491,10 @@ openDashboard();
 function openDashboard(){
 loginPage.classList.add("hidden");
 dashboard.classList.remove("hidden");
-welcomeText.innerHTML = `Status Sesi: <b>Aktif (Multi-Device)</b>`;
+welcomeText.innerHTML = `Peserta Aktif`;
 }
 
-// Auto login jika device ini sudah pernah memasukkan password yang benar
+// Auto login untuk kemudahan akses sementara
 if(localStorage.getItem("isLoggedIn") === "true"){
 openDashboard();
 }
