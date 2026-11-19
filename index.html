@@ -463,8 +463,8 @@ margin-top: 40px;
 </footer>
 
 <script>
-// Ganti dengan URL Web App Google Apps Script (gskodeb2btni.txt) Anda
-const GAS_URL = "MASUKKAN_URL_WEB_APP_GOOGLE_APPS_SCRIPT_ANDA";
+// URL Web App Google Apps Script
+const GAS_URL = "https://script.google.com/macros/s/AKfycbxqe_SvS0wH_iaTUwCNLufJ9wmqJreHFj7fZfGq7PqJFqX3FoujguRCOr2VuXZoBGyh/exec";
 
 // 1. Admin permanen (selamanya)
 const ADMIN_PASSWORDS = ["YEARI"];
@@ -553,12 +553,8 @@ function handleSpecialPassword(rawInput){
   return { ok: true, session: { ...saved, role: "special" }, message: "Login berhasil (Akses 2 bulan aktif)." };
 }
 
-// Validasi kode reguler dari Google Sheet via Apps Script (gskodeb2btni.txt)
+// Validasi kode reguler dari Google Sheet via Apps Script
 async function verifyCodeFromGS(code){
-  if (!GAS_URL || GAS_URL.startsWith("MASUKKAN_")) {
-    return { ok: false, message: "URL Google Apps Script belum diatur." };
-  }
-
   const deviceId = getDeviceId();
   const endpoint = `${GAS_URL}?code=${encodeURIComponent(code)}&deviceId=${encodeURIComponent(deviceId)}`;
   const response = await fetch(endpoint, { method: "GET", cache: "no-store" });
@@ -642,7 +638,7 @@ async function loginSystem(){
     showPopup(gsCheck.message);
     openDashboard(gsCheck.session);
   } catch (err) {
-    showPopup("Gagal terhubung ke Google Sheet. Periksa koneksi atau URL GAS.");
+    showPopup("Gagal terhubung ke Google Sheet. Periksa koneksi atau deployment Web App GAS.");
   } finally {
     loginBtn.disabled = false;
     loginBtn.innerText = "MASUK KE DASHBOARD";
@@ -692,16 +688,12 @@ function openDashboard(sessionData){
     }
 
     // Kode Google Sheet (validasi ulang ke GS)
-    if (GAS_URL && !GAS_URL.startsWith("MASUKKAN_")) {
-      const gsCheck = await verifyCodeFromGS(saved.code);
-      if (gsCheck.ok) {
-        localStorage.setItem("prc_tni_session", JSON.stringify(gsCheck.session));
-        openDashboard(gsCheck.session);
-      } else {
-        localStorage.removeItem("prc_tni_session");
-      }
+    const gsCheck = await verifyCodeFromGS(saved.code);
+    if (gsCheck.ok) {
+      localStorage.setItem("prc_tni_session", JSON.stringify(gsCheck.session));
+      openDashboard(gsCheck.session);
     } else {
-      openDashboard(saved);
+      localStorage.removeItem("prc_tni_session");
     }
   } catch (_) {}
 })();
