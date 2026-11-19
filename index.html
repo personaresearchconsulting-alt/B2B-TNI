@@ -145,10 +145,15 @@ letter-spacing:0.5px;
 box-shadow: 0 4px 12px rgba(19, 19, 64, 0.2);
 }
 
-.login-btn:hover{
+.login-btn:hover:not(:disabled){
 transform:translateY(-2px);
 background:#0B0B26;
 box-shadow:0 8px 20px rgba(11, 11, 38, 0.4);
+}
+
+.login-btn:disabled{
+opacity:0.65;
+cursor:not-allowed;
 }
 
 /* PREMIUM DASHBOARD LAYOUT */
@@ -325,6 +330,8 @@ padding:18px 24px;
 border-left:5px solid #cbd5e1;
 border-radius:14px;
 z-index:9999;
+max-width:360px;
+font-size:13px;
 }
 
 footer{
@@ -351,7 +358,7 @@ margin-top: 40px;
 
 <body>
 
-<div id="loadingScreen" style="display: none;">
+<div id="loadingScreen" class="hidden">
 <div class="loader"></div>
 <h3 style="color:#1a1a1a;font-weight:600;">Menghubungkan ke Sistem...</h3>
 </div>
@@ -360,7 +367,7 @@ margin-top: 40px;
 <div class="login-card">
 <h1>PORTAL UTAMA<br>SIMULASI ASESMEN</h1>
 <p class="subtitle">PERSONA RESEARCH & CONSULTING</p>
-<input type="password" id="passwordInput" placeholder="Masukkan Kata Sandi Akses Portal">
+<input type="password" id="passwordInput" placeholder="Masukkan Kata Sandi Akses Portal" autocomplete="off">
 <button class="login-btn" id="loginBtn">MASUK KE DASHBOARD</button>
 </div>
 </section>
@@ -440,6 +447,11 @@ margin-top: 40px;
 <span>🧠 TES VERBAL</span>
 <small>Mengukur logika berpikir verbal.</small>
 </div>
+
+<a href="https://personaresearchconsulting-alt.github.io/TES-RODA-GILA/" class="menu-card">
+<span>🧠 TES RODA GILA</span>
+<small>Simulasi latihan ketelitian, fokus, dan kecepatan pemrosesan visual secara terstruktur.</small>
+</a>
 </div>
 </div>
 </section>
@@ -451,8 +463,17 @@ margin-top: 40px;
 </footer>
 
 <script>
-// Daftar password yang diizinkan masuk
-const VALID_PASSWORDS = ["PRC00", "yeari"];
+// Ganti dengan URL Web App Google Apps Script (gskodeb2btni.txt) Anda
+const GAS_URL = "MASUKKAN_URL_WEB_APP_GOOGLE_APPS_SCRIPT_ANDA";
+
+// Password khusus masa berlaku 2 bulan
+const SPECIAL_PASSWORDS = {
+  "ARYANSYAH071": {
+    label: "Aryansyah",
+    produk: "AKSES KHUSUS 2 BULAN",
+    months: 2
+  }
+};
 
 const loginBtn = document.getElementById("loginBtn");
 const passwordInput = document.getElementById("passwordInput");
@@ -462,9 +483,99 @@ const popup = document.getElementById("popup");
 const welcomeText = document.getElementById("welcomeText");
 
 function showPopup(text){
-popup.innerText = text;
-popup.classList.remove("hidden");
-setTimeout(()=>{ popup.classList.add("hidden"); }, 2500);
+  popup.innerText = text;
+  popup.classList.remove("hidden");
+  clearTimeout(window.popupTimer);
+  window.popupTimer = setTimeout(() => {
+    popup.classList.add("hidden");
+  }, 3000);
+}
+
+function getDeviceId(){
+  let devId = localStorage.getItem("prc_tni_device_id");
+  if (!devId) {
+    devId = "DEV-" + Math.random().toString(36).substring(2, 10).toUpperCase() + "-" + Date.now().toString(36).toUpperCase();
+    localStorage.setItem("prc_tni_device_id", devId);
+  }
+  return devId;
+}
+
+function formatTanggalID(dateOrIso){
+  if (!dateOrIso) return "-";
+  const d = new Date(dateOrIso);
+  if (isNaN(d.getTime())) return String(dateOrIso);
+  return d.toLocaleDateString("id-ID", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+  });
+}
+
+// Mengelola masa berlaku 2 bulan untuk Aryansyah071 di sisi index
+function handleSpecialPassword(rawInput){
+  const upperInput = rawInput.trim().toUpperCase();
+  const cfg = SPECIAL_PASSWORDS[upperInput];
+  if (!cfg) return null;
+
+  const storageKey = `prc_special_access_${upperInput}`;
+  const now = new Date();
+  let saved = null;
+
+  try {
+    saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+  } catch (_) {
+    saved = null;
+  }
+
+  if (!saved || !saved.expiry) {
+    const expiryDate = new Date(now);
+    expiryDate.setMonth(expiryDate.getMonth() + cfg.months);
+    saved = {
+      code: upperInput,
+      nama: cfg.label,
+      produk: cfg.produk,
+      mulai: now.toISOString(),
+      expiry: expiryDate.toISOString()
+    };
+    localStorage.setItem(storageKey, JSON.stringify(saved));
+    return { ok: true, session: saved, message: "Akses 2 bulan berhasil diaktifkan." };
+  }
+
+  const expiryDate = new Date(saved.expiry);
+  if (expiryDate < now) {
+    return { ok: false, message: "Masa berlaku password 2 bulan sudah berakhir." };
+  }
+
+  return { ok: true, session: saved, message: "Login berhasil (Akses 2 bulan aktif)." };
+}
+
+// Verifikasi kode reguler ke Google Sheet via Apps Script
+async function verifyCodeFromGS(code){
+  if (!GAS_URL || GAS_URL.startsWith("MASUKKAN_")) {
+    return { ok: false, message: "URL Google Apps Script belum diatur." };
+  }
+
+  const deviceId = getDeviceId();
+  const endpoint = `${GAS_URL}?code=${encodeURIComponent(code)}&deviceId=${encodeURIComponent(deviceId)}`;
+  const response = await fetch(endpoint, { method: "GET", cache: "no-store" });
+  const result = await response.json();
+
+  if (result.status !== "success") {
+    return { ok: false, message: result.message || "Password atau kode akses tidak sesuai." };
+  }
+
+  return {
+    ok: true,
+    message: result.message || "Login berhasil.",
+    session: {
+      code: code,
+      nama: result.nama || "",
+      produk: result.produk || "",
+      mulai: result.mulai || "",
+      expiry: result.expiry || "",
+      isSpecial: false
+    }
+  };
 }
 
 loginBtn.addEventListener("click", loginSystem);
@@ -473,49 +584,113 @@ passwordInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") loginSystem();
 });
 
-function loginSystem(){
-const input = passwordInput.value.trim();
+async function loginSystem(){
+  const rawInput = passwordInput.value.trim();
 
-const isValid = VALID_PASSWORDS.some(pass => pass.toLowerCase() === input.toLowerCase());
+  if (!rawInput) {
+    showPopup("Silakan masukkan kata sandi akses.");
+    return;
+  }
 
-if(!isValid){
-showPopup("Password salah.");
-return;
+  const upperInput = rawInput.toUpperCase();
+
+  // 1. Cek password khusus Aryansyah071 (masa berlaku 2 bulan)
+  const specialCheck = handleSpecialPassword(rawInput);
+  if (specialCheck) {
+    if (!specialCheck.ok) {
+      showPopup(specialCheck.message);
+      return;
+    }
+    const sessionData = { ...specialCheck.session, isSpecial: true };
+    localStorage.setItem("prc_tni_session", JSON.stringify(sessionData));
+    showPopup(specialCheck.message);
+    openDashboard(sessionData);
+    return;
+  }
+
+  // 2. Cek kode/password yang terhubung ke Google Sheet via GAS
+  loginBtn.disabled = true;
+  loginBtn.innerText = "MEMERIKSA...";
+
+  try {
+    const gsCheck = await verifyCodeFromGS(upperInput);
+    if (!gsCheck.ok) {
+      showPopup(gsCheck.message);
+      return;
+    }
+
+    localStorage.setItem("prc_tni_session", JSON.stringify(gsCheck.session));
+    showPopup(gsCheck.message);
+    openDashboard(gsCheck.session);
+  } catch (err) {
+    showPopup("Gagal terhubung ke Google Sheet. Periksa koneksi atau URL GAS.");
+  } finally {
+    loginBtn.disabled = false;
+    loginBtn.innerText = "MASUK KE DASHBOARD";
+  }
 }
 
-localStorage.setItem("isLoggedIn", "true");
-showPopup("Login berhasil.");
-openDashboard();
+function openDashboard(sessionData){
+  loginPage.classList.add("hidden");
+  dashboard.classList.remove("hidden");
+
+  const infoNama = sessionData.nama ? `${sessionData.nama} (${sessionData.code})` : sessionData.code;
+  const infoProduk = sessionData.produk ? ` • ${sessionData.produk}` : "";
+  const infoExpiry = sessionData.expiry ? ` • Berlaku s.d. ${formatTanggalID(sessionData.expiry)}` : "";
+
+  welcomeText.innerText = `Peserta Aktif: ${infoNama}${infoProduk}${infoExpiry}`;
 }
 
-function openDashboard(){
-loginPage.classList.add("hidden");
-dashboard.classList.remove("hidden");
-welcomeText.innerHTML = `Peserta Aktif`;
-}
+// Pulihkan sesi saat halaman dimuat ulang
+(async function restoreSession(){
+  const savedRaw = localStorage.getItem("prc_tni_session");
+  if (!savedRaw) return;
 
-// Auto login untuk kemudahan akses sementara
-if(localStorage.getItem("isLoggedIn") === "true"){
-openDashboard();
-}
+  try {
+    const saved = JSON.parse(savedRaw);
+    if (!saved || !saved.code) return;
 
-document.getElementById("logoutBtn").addEventListener("click", ()=>{
-localStorage.removeItem("isLoggedIn");
-location.reload();
+    if (saved.isSpecial) {
+      const check = handleSpecialPassword(saved.code);
+      if (check && check.ok) {
+        openDashboard({ ...check.session, isSpecial: true });
+      } else {
+        localStorage.removeItem("prc_tni_session");
+      }
+      return;
+    }
+
+    if (GAS_URL && !GAS_URL.startsWith("MASUKKAN_")) {
+      const gsCheck = await verifyCodeFromGS(saved.code);
+      if (gsCheck.ok) {
+        localStorage.setItem("prc_tni_session", JSON.stringify(gsCheck.session));
+        openDashboard(gsCheck.session);
+      } else {
+        localStorage.removeItem("prc_tni_session");
+      }
+    } else {
+      openDashboard(saved);
+    }
+  } catch (_) {}
+})();
+
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  localStorage.removeItem("prc_tni_session");
+  location.reload();
 });
 
 document.addEventListener("contextmenu", e => e.preventDefault());
 document.addEventListener("keydown", e => {
-if(e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I") || (e.ctrlKey && e.key === "u")){
-e.preventDefault();
-}
+  if(e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "I") || (e.ctrlKey && e.key === "u")){
+    e.preventDefault();
+  }
 });
 
 document.querySelectorAll(".menu-card[data-link]").forEach(card => {
-card.addEventListener("click", () => {
-const target = card.getAttribute("data-link");
-if(target) window.location.href = target;
-});
+  card.addEventListener("click", () => {
+    const target = card.getAttribute("data-link");
+    if(target) window.location.href = target;
+  });
 });
 </script>
 </body>
