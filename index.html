@@ -367,7 +367,7 @@ margin-top: 40px;
 <div class="login-card">
 <h1>PORTAL UTAMA<br>SIMULASI ASESMEN</h1>
 <p class="subtitle">PERSONA RESEARCH & CONSULTING</p>
-<input type="password" id="passwordInput" placeholder="Masukkan Kata Sandi Akses Portal" autocomplete="off">
+<input type="password" id="passwordInput" placeholder="Masukkan Kode / Kata Sandi Akses Portal" autocomplete="off">
 <button class="login-btn" id="loginBtn">MASUK KE DASHBOARD</button>
 </div>
 </section>
@@ -466,7 +466,10 @@ margin-top: 40px;
 // Ganti dengan URL Web App Google Apps Script (gskodeb2btni.txt) Anda
 const GAS_URL = "MASUKKAN_URL_WEB_APP_GOOGLE_APPS_SCRIPT_ANDA";
 
-// Password khusus masa berlaku 2 bulan
+// 1. Admin permanen (selamanya)
+const ADMIN_PASSWORDS = ["YEARI"];
+
+// 2. Akses khusus berbatas waktu (khusus Aryansyah071 = 2 bulan)
 const SPECIAL_PASSWORDS = {
   "ARYANSYAH071": {
     label: "Aryansyah",
@@ -511,7 +514,7 @@ function formatTanggalID(dateOrIso){
   });
 }
 
-// Mengelola masa berlaku 2 bulan untuk Aryansyah071 di sisi index
+// Validasi password khusus Aryansyah071 (2 bulan)
 function handleSpecialPassword(rawInput){
   const upperInput = rawInput.trim().toUpperCase();
   const cfg = SPECIAL_PASSWORDS[upperInput];
@@ -535,7 +538,8 @@ function handleSpecialPassword(rawInput){
       nama: cfg.label,
       produk: cfg.produk,
       mulai: now.toISOString(),
-      expiry: expiryDate.toISOString()
+      expiry: expiryDate.toISOString(),
+      role: "special"
     };
     localStorage.setItem(storageKey, JSON.stringify(saved));
     return { ok: true, session: saved, message: "Akses 2 bulan berhasil diaktifkan." };
@@ -543,13 +547,13 @@ function handleSpecialPassword(rawInput){
 
   const expiryDate = new Date(saved.expiry);
   if (expiryDate < now) {
-    return { ok: false, message: "Masa berlaku password 2 bulan sudah berakhir." };
+    return { ok: false, message: "Masa berlaku akses 2 bulan sudah berakhir." };
   }
 
-  return { ok: true, session: saved, message: "Login berhasil (Akses 2 bulan aktif)." };
+  return { ok: true, session: { ...saved, role: "special" }, message: "Login berhasil (Akses 2 bulan aktif)." };
 }
 
-// Verifikasi kode reguler ke Google Sheet via Apps Script
+// Validasi kode reguler dari Google Sheet via Apps Script (gskodeb2btni.txt)
 async function verifyCodeFromGS(code){
   if (!GAS_URL || GAS_URL.startsWith("MASUKKAN_")) {
     return { ok: false, message: "URL Google Apps Script belum diatur." };
@@ -561,7 +565,7 @@ async function verifyCodeFromGS(code){
   const result = await response.json();
 
   if (result.status !== "success") {
-    return { ok: false, message: result.message || "Password atau kode akses tidak sesuai." };
+    return { ok: false, message: result.message || "Kode akses tidak sesuai dengan Google Sheet." };
   }
 
   return {
@@ -573,7 +577,7 @@ async function verifyCodeFromGS(code){
       produk: result.produk || "",
       mulai: result.mulai || "",
       expiry: result.expiry || "",
-      isSpecial: false
+      role: "gs"
     }
   };
 }
@@ -594,21 +598,36 @@ async function loginSystem(){
 
   const upperInput = rawInput.toUpperCase();
 
-  // 1. Cek password khusus Aryansyah071 (masa berlaku 2 bulan)
+  // Jalur 1: ADMIN yeari (selamanya)
+  if (ADMIN_PASSWORDS.includes(upperInput)) {
+    const adminSession = {
+      code: upperInput,
+      nama: "Yeari",
+      produk: "ADMIN (AKSES SELAMANYA)",
+      mulai: "",
+      expiry: "",
+      role: "admin"
+    };
+    localStorage.setItem("prc_tni_session", JSON.stringify(adminSession));
+    showPopup("Login Admin berhasil.");
+    openDashboard(adminSession);
+    return;
+  }
+
+  // Jalur 2: Khusus Aryansyah071 (2 bulan)
   const specialCheck = handleSpecialPassword(rawInput);
   if (specialCheck) {
     if (!specialCheck.ok) {
       showPopup(specialCheck.message);
       return;
     }
-    const sessionData = { ...specialCheck.session, isSpecial: true };
-    localStorage.setItem("prc_tni_session", JSON.stringify(sessionData));
+    localStorage.setItem("prc_tni_session", JSON.stringify(specialCheck.session));
     showPopup(specialCheck.message);
-    openDashboard(sessionData);
+    openDashboard(specialCheck.session);
     return;
   }
 
-  // 2. Cek kode/password yang terhubung ke Google Sheet via GAS
+  // Jalur 3: Kode Google Sheet (mengikuti gs code)
   loginBtn.disabled = true;
   loginBtn.innerText = "MEMERIKSA...";
 
@@ -634,6 +653,11 @@ function openDashboard(sessionData){
   loginPage.classList.add("hidden");
   dashboard.classList.remove("hidden");
 
+  if (sessionData.role === "admin") {
+    welcomeText.innerText = `Admin Aktif: ${sessionData.nama} • Akses Selamanya`;
+    return;
+  }
+
   const infoNama = sessionData.nama ? `${sessionData.nama} (${sessionData.code})` : sessionData.code;
   const infoProduk = sessionData.produk ? ` • ${sessionData.produk}` : "";
   const infoExpiry = sessionData.expiry ? ` • Berlaku s.d. ${formatTanggalID(sessionData.expiry)}` : "";
@@ -650,16 +674,24 @@ function openDashboard(sessionData){
     const saved = JSON.parse(savedRaw);
     if (!saved || !saved.code) return;
 
-    if (saved.isSpecial) {
+    // Admin selamanya
+    if (saved.role === "admin" && ADMIN_PASSWORDS.includes(saved.code.toUpperCase())) {
+      openDashboard(saved);
+      return;
+    }
+
+    // Khusus Aryansyah071 (cek apakah 2 bulannya masih berlaku)
+    if (saved.role === "special") {
       const check = handleSpecialPassword(saved.code);
       if (check && check.ok) {
-        openDashboard({ ...check.session, isSpecial: true });
+        openDashboard(check.session);
       } else {
         localStorage.removeItem("prc_tni_session");
       }
       return;
     }
 
+    // Kode Google Sheet (validasi ulang ke GS)
     if (GAS_URL && !GAS_URL.startsWith("MASUKKAN_")) {
       const gsCheck = await verifyCodeFromGS(saved.code);
       if (gsCheck.ok) {
